@@ -1,11 +1,27 @@
-const AppError = require("../utils/AppError")
+const AppError = require("../utils/AppError");
+const knex = require("../database/knex");
 
 class DishesController {
   async create(req, res) {
-    const { title, category, description, price } = req.body
+    const { title, category, description, price, ingredients } = req.body;
 
-    return res.json({ title, category, description, price })
+    const [dish_id] = await knex("dishes").insert({
+      title,
+      category,
+      description,
+      price,
+    });
+
+    const ingredientsInsert = ingredients.map((title) => {
+      return {
+        dish_id,
+        title,
+      };
+    });
+
+    await knex("ingredients").insert(ingredientsInsert);
+    return res.json();
   }
 }
 
-module.exports = DishesController
+module.exports = DishesController;

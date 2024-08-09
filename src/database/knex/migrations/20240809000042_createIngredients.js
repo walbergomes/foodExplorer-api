@@ -2,7 +2,7 @@ exports.up = knex => knex.schema.createTable("ingredients", table => {
   table.increments("id")
   table.text("title").notNullable()
 
-  table.integer("dish_id").references("id").inTable("dish").onDelete("CASCADE")
+  table.integer("dish_id").references("id").inTable("dishes").onDelete("CASCADE")
 }) 
 
 
