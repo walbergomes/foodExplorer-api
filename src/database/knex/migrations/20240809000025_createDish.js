@@ -1,4 +1,4 @@
-exports.up = knex => knex.schema.createTable("dish", table => {
+exports.up = knex => knex.schema.createTable("dishes", table => {
   table.increments("id")
   table.text("title").notNullable()
   table.text("image")
@@ -8,4 +8,4 @@ exports.up = knex => knex.schema.createTable("dish", table => {
 }) 
 
 
-exports.down = knex => knex.schema.dropTable("dish")
+exports.down = knex => knex.schema.dropTable("dishes")
