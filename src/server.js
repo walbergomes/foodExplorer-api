@@ -1,12 +1,12 @@
 const express = require("express")
 const database = require("./database/sqlite")
 
+const routes = require("./routes")
+
 const app = express()
+app.use(express.json())
 
-
-app.get("/", (req, res) => {
-  return res.json("Hello, world!")
-})
+app.use(routes)
 
 database()
 
